@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeno</title>
+  <meta name="description" content="Jeno의 개인 홈페이지" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#top" class="logo">Jeno</a>
+      <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">소개</a></li>
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="top" class="hero container">
+      <p class="eyebrow">Hello, I'm</p>
+      <h1>Jeno</h1>
+      <p class="hero-tagline">여기에 한 줄 소개를 적어주세요.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+        <a href="#contact" class="btn btn-secondary">연락하기</a>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <h2>소개</h2>
+      <p>
+        이곳에 자기소개를 작성하세요. 관심 분야, 경력, 하고 있는 일 등을
+        자유롭게 채워보세요.
+      </p>
+    </section>
+
+    <section id="projects" class="section container">
+      <h2>프로젝트</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <h3>프로젝트 제목</h3>
+          <p>프로젝트에 대한 간단한 설명을 적어주세요.</p>
+          <a href="#" class="project-link">자세히 보기 →</a>
+        </article>
+        <article class="project-card">
+          <h3>프로젝트 제목</h3>
+          <p>프로젝트에 대한 간단한 설명을 적어주세요.</p>
+          <a href="#" class="project-link">자세히 보기 →</a>
+        </article>
+        <article class="project-card">
+          <h3>프로젝트 제목</h3>
+          <p>프로젝트에 대한 간단한 설명을 적어주세요.</p>
+          <a href="#" class="project-link">자세히 보기 →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <h2>연락처</h2>
+      <p>편하게 연락 주세요.</p>
+      <ul class="contact-list">
+        <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="container">&copy; <span id="year"></span> Jeno. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
