@@ -1,6 +1,8 @@
-# jeno_homepage
+# jeno의 홈페이지
 
-Jeno의 개인 홈페이지입니다. 순수 HTML/CSS/JS로 만들어졌으며 빌드 과정 없이 바로 열어볼 수 있습니다.
+🔗 홈페이지 접속: https://youngwanlee-coder.github.io/jeno_homepage/
+
+Jeno의 개인 홈페이지입니다. 순수 HTML로 만들어졌으며 빌드 과정 없이 바로 열어볼 수 있습니다.
 
 ## 실행 방법
 
@@ -14,6 +16,4 @@ python3 -m http.server 8000
 
 ## 구조
 
-- `index.html` — 페이지 구조 (히어로, 소개, 프로젝트, 연락처)
-- `style.css` — 스타일 (반응형, 다크모드 지원)
-- `script.js` — 모바일 메뉴 토글, 연도 표시
+- `index.html` — 인사말과 오늘 날짜를 보여주는 한 페이지
