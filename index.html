@@ -1,45 +1,348 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>이윤관</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>이윤관 | Portfolio</title>
+<meta name="description" content="이윤관의 개인 홈페이지 — 소개, 경력, 프로젝트" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<style>
+  :root{
+    --paper:#FAF9F5;
+    --surface:#FFFFFF;
+    --ink:#16181C;
+    --char:#454B53;
+    --slate:#7A828C;
+    --mist:#E4E3DD;
+    --border:rgba(22,24,28,.10);
+    --divider:rgba(22,24,28,.07);
+    --accent:#3457D1;
+    --accent-soft:rgba(52,87,209,.10);
+    --shadow-sm:0 2px 10px rgba(22,24,28,.06);
+    --shadow-md:0 16px 36px -16px rgba(22,24,28,.22);
+    --radius-md:14px;
+    --radius-pill:999px;
+    --font-kr:'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+    --font-en:'Space Grotesk', sans-serif;
+    --container-max:920px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#111315;
+      --surface:#191c1f;
+      --ink:#F2F3F1;
+      --char:#C6CBD1;
+      --slate:#8C939C;
+      --mist:#2A2E33;
+      --border:rgba(242,243,241,.12);
+      --divider:rgba(242,243,241,.08);
+      --accent:#7C97F0;
+      --accent-soft:rgba(124,151,240,.14);
+      --shadow-sm:0 2px 10px rgba(0,0,0,.35);
+      --shadow-md:0 16px 36px -16px rgba(0,0,0,.6);
     }
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
-        "Noto Sans KR", sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-    }
-    h1 {
-      font-size: 2rem;
-      margin: 0 0 0.5em;
-    }
-    p {
-      font-size: 1.1rem;
-      color: #5a5a5a;
-      margin: 0;
-    }
-  </style>
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--font-kr); line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--container-max); margin:0 auto; padding:0 24px; }
+
+  nav.top{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--paper) 80%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--divider);
+  }
+  nav.top .wrap{ display:flex; align-items:center; justify-content:space-between; height:60px; }
+  .brandmark{ font-family:var(--font-en); font-weight:700; font-size:17px; text-decoration:none; color:var(--ink); }
+  .navlinks{ display:flex; gap:26px; list-style:none; margin:0; padding:0; }
+  .navlinks a{ text-decoration:none; color:var(--char); font-weight:600; font-size:14px; }
+  .navlinks a:hover{ color:var(--accent); }
+  @media (max-width:600px){ .navlinks{ display:none; } }
+
+  section{ padding:88px 0; }
+  @media (max-width:700px){ section{ padding:56px 0; } }
+  .eyebrow{
+    font-family:var(--font-en); font-weight:700; font-size:12px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--accent); display:inline-flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{ content:""; width:16px; height:2px; background:var(--accent); }
+  h2.section-title{ font-size:clamp(24px,3vw,32px); font-weight:700; margin:12px 0 8px; letter-spacing:-.01em; }
+  p.section-sub{ color:var(--slate); font-size:15px; margin:0 0 40px; }
+
+  /* ---------- hero ---------- */
+  .hero{ padding-top:72px; padding-bottom:64px; }
+  .avatar{
+    width:76px; height:76px; border-radius:50%;
+    background:linear-gradient(150deg, var(--accent), #6c86e8);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-en); font-weight:700; font-size:26px;
+    box-shadow:var(--shadow-md); margin-bottom:24px;
+  }
+  .hero h1{ font-size:clamp(32px,5vw,50px); font-weight:700; line-height:1.25; margin:0 0 14px; letter-spacing:-.02em; }
+  .hero h1 span{ color:var(--accent); }
+  .hero p.lede{ font-size:17px; color:var(--char); max-width:56ch; margin:0 0 8px; }
+  .hero .today{ font-size:13px; color:var(--slate); margin:0 0 30px; }
+  .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:34px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; border-radius:var(--radius-pill);
+    font-weight:700; font-size:14.5px; padding:12px 22px; border:none; cursor:pointer;
+    text-decoration:none; transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .btn-ghost{ background:transparent; color:var(--ink); border:1.5px solid var(--border); }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+  .hero-links{ display:flex; gap:10px; flex-wrap:wrap; }
+  .hero-links a{
+    font-size:13px; font-weight:600; color:var(--char); text-decoration:none;
+    background:var(--surface); border:1px solid var(--border); padding:7px 14px; border-radius:var(--radius-pill);
+  }
+  .hero-links a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  /* ---------- about ---------- */
+  .about-tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:22px; }
+  .tag{
+    font-size:13px; font-weight:600; color:var(--char); background:var(--surface);
+    border:1px solid var(--border); padding:6px 13px; border-radius:var(--radius-pill);
+  }
+  .placeholder-box{
+    background:var(--surface); border:1.5px dashed var(--border); border-radius:var(--radius-md);
+    padding:20px; color:var(--slate); font-size:14px;
+  }
+
+  /* ---------- career ---------- */
+  .timeline{ display:flex; flex-direction:column; }
+  .t-item{
+    display:grid; grid-template-columns:110px 20px 1fr; gap:0 18px;
+    padding-bottom:34px; position:relative;
+  }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-period{ font-family:var(--font-en); font-weight:600; font-size:13px; color:var(--slate); padding-top:2px; }
+  .t-dot-col{ display:flex; flex-direction:column; align-items:center; }
+  .t-dot{ width:10px; height:10px; border-radius:50%; background:var(--accent); margin-top:6px; flex:0 0 auto; }
+  .t-line{ width:1.5px; flex:1; background:var(--divider); margin-top:4px; }
+  .t-item:last-child .t-line{ display:none; }
+  .t-body{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:18px 20px; box-shadow:var(--shadow-sm); }
+  .t-role{ font-weight:700; font-size:15.5px; margin:0 0 3px; }
+  .t-org{ font-size:13.5px; color:var(--accent); font-weight:600; margin:0 0 8px; }
+  .t-desc{ font-size:13.5px; color:var(--char); margin:0; }
+  @media (max-width:560px){
+    .t-item{ grid-template-columns:20px 1fr; }
+    .t-period{ display:none; }
+  }
+
+  /* ---------- projects ---------- */
+  .proj-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  @media (max-width:640px){ .proj-grid{ grid-template-columns:1fr; } }
+  .proj-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+    padding:22px; box-shadow:var(--shadow-sm); text-decoration:none; color:inherit;
+    display:flex; flex-direction:column; gap:10px; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .proj-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md); }
+  .proj-card .p-emoji{ font-size:26px; }
+  .proj-card h3{ margin:0; font-size:16.5px; font-weight:700; }
+  .proj-card p{ margin:0; font-size:13.5px; color:var(--char); flex:1; }
+  .proj-card .p-tags{ display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
+  .proj-card .p-tags span{ font-size:11.5px; font-weight:700; color:var(--accent); background:var(--accent-soft); padding:3px 9px; border-radius:var(--radius-pill); }
+  .proj-card.is-placeholder{ border-style:dashed; color:var(--slate); }
+  .proj-card .p-link{ font-size:12.5px; font-weight:700; color:var(--accent); margin-top:2px; }
+
+  /* ---------- contact / footer ---------- */
+  footer.site{
+    background:var(--ink); color:var(--paper);
+    border-radius:var(--radius-md); margin:0 24px 24px; padding:56px 40px;
+  }
+  @media (max-width:640px){ footer.site{ margin:0 16px 16px; padding:40px 24px; } }
+  footer.site .wrap{ padding:0; display:flex; flex-direction:column; gap:26px; }
+  footer.site h2{ font-size:26px; font-weight:700; margin:0; }
+  footer.site p{ color:rgba(250,249,245,.72); font-size:15px; max-width:52ch; margin:0; }
+  .contact-links{ display:flex; gap:12px; flex-wrap:wrap; }
+  .contact-links a{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    background:rgba(250,249,245,.08); border:1px solid rgba(250,249,245,.16);
+    color:var(--paper); padding:10px 18px; border-radius:var(--radius-pill); font-size:14px; font-weight:600;
+  }
+  .contact-links a:hover{ background:rgba(250,249,245,.16); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    font-size:12.5px; color:rgba(250,249,245,.5);
+    border-top:1px solid rgba(250,249,245,.14); padding-top:20px;
+  }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .55s ease, transform .55s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
 </head>
 <body>
-  <div>
-    <h1>안녕하세요, 이윤관입니다</h1>
-    <p id="today"></p>
+
+<nav class="top">
+  <div class="wrap">
+    <a href="#top" class="brandmark">이윤관</a>
+    <ul class="navlinks">
+      <li><a href="#about">소개</a></li>
+      <li><a href="#career">경력</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#contact">연락처</a></li>
+    </ul>
   </div>
-  <script>
-    document.getElementById("today").textContent = new Date().toLocaleDateString(
-      "ko-KR",
-      { year: "numeric", month: "long", day: "numeric", weekday: "long" }
-    );
-  </script>
+</nav>
+
+<main id="top">
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="avatar" aria-hidden="true">이</div>
+      <h1>안녕하세요,<br><span>이윤관</span>입니다.</h1>
+      <p class="lede">이 문장은 자기소개 자리표시자예요 — 하는 일, 관심사, 지금 만들고 있는 것을 한두 문장으로 채워주세요.</p>
+      <p class="today" id="today"></p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+        <a href="#contact" class="btn btn-ghost">연락하기 →</a>
+      </div>
+      <div class="hero-links">
+        <a href="https://github.com/youngwanlee-coder" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="#contact">이메일</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="wrap reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section-title">소개</h2>
+      <p class="section-sub">간단한 자기소개와 관심 분야를 적어주세요.</p>
+      <div class="placeholder-box">
+        여기에 자기소개 문단을 채워주세요. 예: 무엇을 만들고 있는지, 어떤 문제에 관심이 있는지, 어떤 방식으로 일하는지 등.
+      </div>
+      <div class="about-tags">
+        <span class="tag">#관심분야1</span>
+        <span class="tag">#관심분야2</span>
+        <span class="tag">#관심분야3</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="career">
+    <div class="wrap reveal">
+      <span class="eyebrow">Career</span>
+      <h2 class="section-title">경력</h2>
+      <p class="section-sub">아래 항목들을 실제 경력으로 바꿔주세요. (기간 · 회사/역할 · 설명)</p>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-period">2024 — 현재</div>
+          <div class="t-dot-col"><span class="t-dot"></span><span class="t-line"></span></div>
+          <div class="t-body">
+            <p class="t-role">[직무/역할을 입력하세요]</p>
+            <p class="t-org">[회사명 또는 소속]</p>
+            <p class="t-desc">이 자리에 담당했던 일과 성과를 간단히 적어주세요.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-period">[기간]</div>
+          <div class="t-dot-col"><span class="t-dot"></span><span class="t-line"></span></div>
+          <div class="t-body">
+            <p class="t-role">[직무/역할을 입력하세요]</p>
+            <p class="t-org">[회사명 또는 소속]</p>
+            <p class="t-desc">이 자리에 담당했던 일과 성과를 간단히 적어주세요.</p>
+          </div>
+        </div>
+        <div class="t-item">
+          <div class="t-period">[기간]</div>
+          <div class="t-dot-col"><span class="t-dot"></span></div>
+          <div class="t-body">
+            <p class="t-role">[학력 또는 이전 경력]</p>
+            <p class="t-org">[학교 또는 회사명]</p>
+            <p class="t-desc">전공이나 담당 업무를 적어주세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap reveal">
+      <span class="eyebrow">Projects</span>
+      <h2 class="section-title">프로젝트</h2>
+      <p class="section-sub">직접 만든 것들을 카드로 소개해요.</p>
+      <div class="proj-grid">
+        <a class="proj-card" href="https://github.com/youngwanlee-coder/jeno_homepage" target="_blank" rel="noopener">
+          <span class="p-emoji">🥗</span>
+          <h3>스윗밸런스 홈페이지 리뉴얼</h3>
+          <p>브랜드 디자인 시스템을 기반으로 자사몰 랜딩 페이지를 새로 만들었어요. "오늘의 채소 룰렛" 등 인터랙티브 기능을 직접 설계했습니다.</p>
+          <div class="p-tags"><span>HTML/CSS/JS</span><span>Design System</span></div>
+          <span class="p-link">저장소 보기 →</span>
+        </a>
+        <div class="proj-card is-placeholder">
+          <span class="p-emoji">✨</span>
+          <h3>[프로젝트명을 입력하세요]</h3>
+          <p>무엇을 만들었는지, 어떤 기술을 썼는지, 어떤 문제를 풀었는지 적어주세요.</p>
+          <div class="p-tags"><span>#태그</span></div>
+        </div>
+        <div class="proj-card is-placeholder">
+          <span class="p-emoji">🛠️</span>
+          <h3>[프로젝트명을 입력하세요]</h3>
+          <p>이 카드는 자리표시자예요. 실제 프로젝트로 바꾸거나 삭제해주세요.</p>
+          <div class="p-tags"><span>#태그</span></div>
+        </div>
+        <div class="proj-card is-placeholder">
+          <span class="p-emoji">📦</span>
+          <h3>[프로젝트명을 입력하세요]</h3>
+          <p>이 카드는 자리표시자예요. 실제 프로젝트로 바꾸거나 삭제해주세요.</p>
+          <div class="p-tags"><span>#태그</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site reveal" id="contact">
+  <div class="wrap">
+    <h2>연락해주세요</h2>
+    <p>같이 만들어볼 만한 이야기가 있다면 편하게 연락 주세요.</p>
+    <div class="contact-links">
+      <a href="#" id="emailLink">✉️ [이메일 주소를 입력하세요]</a>
+      <a href="https://github.com/youngwanlee-coder" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> 이윤관</span>
+      <span>Built with Claude Code</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('today').textContent = new Date().toLocaleDateString('ko-KR', {
+    year:'numeric', month:'long', day:'numeric', weekday:'long'
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12 });
+  revealEls.forEach(el => io.observe(el));
+  setTimeout(() => revealEls.forEach(el => el.classList.add('in')), 2000);
+</script>
 </body>
 </html>
