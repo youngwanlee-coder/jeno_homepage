@@ -224,6 +224,7 @@
     padding:var(--sp-24) 0 var(--sp-20);
   }
   .hero-grid{
+    position:relative; z-index:1;
     display:grid;
     grid-template-columns:1.05fr .95fr;
     gap:var(--sp-16);
@@ -287,6 +288,33 @@
   @keyframes float{
     0%,100%{ transform:translateY(0px) rotate(0deg); }
     50%{ transform:translateY(-14px) rotate(6deg); }
+  }
+
+  /* 유기적인 blob 장식 — 브랜드의 '부드럽고 친근한' 성격을 배경에서도 은은하게 */
+  .blob{
+    position:absolute; z-index:0; pointer-events:none;
+    animation:blob-float 9s ease-in-out infinite;
+  }
+  @keyframes blob-float{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-16px) rotate(4deg); }
+  }
+  .hero .blob.b1{
+    width:300px; height:300px; top:-90px; right:-70px;
+    background:rgba(253,255,230,.08);
+    border-radius:62% 38% 55% 45% / 48% 42% 58% 52%;
+  }
+  .hero .blob.b2{
+    width:170px; height:170px; bottom:-40px; left:4%;
+    background:rgba(132,186,69,.16);
+    border-radius:42% 58% 39% 61% / 55% 45% 55% 45%;
+    animation-delay:-3s;
+  }
+  .hero .blob.b3{
+    width:90px; height:90px; top:38%; left:38%;
+    background:rgba(253,255,230,.10);
+    border-radius:50%;
+    animation-delay:-5s;
   }
 
   /* ============ Section 공통 ============ */
@@ -364,18 +392,25 @@
   }
   .coming-card .em{ font-size:26px; display:block; margin-bottom:6px; opacity:.6; }
 
-  /* ============ 채소 룰렛 섹션 (주인공) ============ */
+  /* ============ 채소 룰렛 섹션 (주인공) — 크림 배경 위에 둥둥 뜬 카드 ============ */
   .feature{
     background:var(--paper);
-    border-top:1px solid var(--divider);
-    border-bottom:1px solid var(--divider);
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    box-shadow:var(--shadow-sm);
+    max-width:calc(var(--container-max) - var(--sp-12));
+    margin:var(--sp-8) auto var(--sp-16);
+    padding:var(--sp-16) 0;
+  }
+  @media (max-width:720px){
+    .feature{ margin:var(--sp-6) var(--sp-4) var(--sp-10); padding:var(--sp-10) 0; }
   }
   .feature-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:var(--sp-20);
     align-items:center;
-    max-width:1100px;
+    max-width:1000px;
     margin:0 auto;
   }
   @media (max-width:900px){
@@ -503,54 +538,57 @@
     100%{ opacity:0; transform:translate(-50%,-50%) translate(var(--dx), var(--dy)) rotate(200deg); }
   }
 
-  /* ============ 브랜드 소개 (하단) ============ */
-  .brand{ text-align:center; }
-  .mission-box{
+  /* ============ 브랜드 소개 (하단, 하나의 초록 카드형 풋터) ============ */
+  .brand-footer{
     background:var(--vital-green);
     color:var(--fg-on-green);
     border-radius:var(--radius-md);
-    padding:var(--sp-12) var(--sp-10);
-    max-width:820px;
-    margin:0 auto var(--sp-12);
+    max-width:calc(var(--container-max) - var(--sp-12));
+    margin:var(--sp-4) auto var(--sp-6);
+    padding:var(--sp-20) var(--sp-10) var(--sp-8);
   }
-  .mission-box p.kr{ font-size:var(--text-2xl); font-weight:700; line-height:1.5; margin:0 0 var(--sp-4); }
-  .mission-box p.en{ font-style:italic; color:rgba(253,255,230,.75); font-family:var(--font-en); font-size:14px; margin:0; }
-
-  .slogan{
+  @media (max-width:720px){
+    .brand-footer{ margin:var(--sp-4) var(--sp-4) var(--sp-4); padding:var(--sp-12) var(--sp-6) var(--sp-6); }
+  }
+  .brand-footer .wordmark{
+    display:flex; align-items:center; gap:8px;
+    font-weight:800; font-size:20px; margin-bottom:var(--sp-8);
+  }
+  .brand-footer .wordmark .logo-mark{ background:var(--seed-green); }
+  .brand-footer .mission{
+    font-size:var(--text-2xl); font-weight:700; line-height:1.5;
+    max-width:640px; margin:0 0 var(--sp-3);
+  }
+  .brand-footer .mission-en{
+    font-style:italic; color:rgba(253,255,230,.7); font-family:var(--font-en);
+    font-size:14px; margin:0 0 var(--sp-5); max-width:60ch;
+  }
+  .brand-footer .slogan{
     font-family:var(--font-en-display);
     font-size:var(--text-3xl);
-    color:var(--vital-green);
+    color:var(--seed-green);
     margin:0 0 var(--sp-10);
   }
-
-  .personality-row{
-    display:flex; gap:var(--sp-5); justify-content:center; flex-wrap:wrap;
-    margin-bottom:var(--sp-16);
-  }
-  .personality-card{
-    background:var(--white);
-    border:1px solid var(--border);
+  .pillars{ display:flex; gap:var(--sp-5); flex-wrap:wrap; margin-bottom:var(--sp-10); }
+  .pillar{
+    flex:1 1 180px;
+    background:rgba(253,255,230,.08);
+    border:1px solid rgba(253,255,230,.16);
     border-radius:var(--radius-md);
-    padding:var(--sp-6);
-    width:200px;
-    text-align:left;
-    box-shadow:var(--shadow-xs);
+    padding:var(--sp-5);
   }
-  .personality-card .en{ font-family:var(--font-en); font-weight:800; font-size:18px; color:var(--ink); }
-  .personality-card .kr{ font-size:13px; color:var(--vital-green); font-weight:700; margin:2px 0 8px; }
-  .personality-card .desc{ font-size:13px; color:var(--slate); line-height:1.6; }
+  .pillar .en{ font-family:var(--font-en); font-weight:800; font-size:17px; margin:0; }
+  .pillar .kr{ font-size:13px; color:var(--seed-green); font-weight:700; margin:2px 0 8px; }
+  .pillar .desc{ font-size:13px; color:rgba(253,255,230,.8); line-height:1.6; margin:0; }
 
-  footer.site{
-    border-top:1px solid var(--divider);
-    padding:var(--sp-10) 0;
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--sp-3);
+    font-size:12px; color:rgba(253,255,230,.65);
+    border-top:1px solid rgba(253,255,230,.16);
+    padding-top:var(--sp-5);
   }
-  .footer-row{
-    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--sp-4);
-  }
-  .footer-links{ display:flex; gap:var(--sp-6); list-style:none; padding:0; margin:0; }
-  .footer-links a{ text-decoration:none; color:var(--slate); font-size:13px; }
-  .footer-links a:hover{ color:var(--vital-green); }
-  .footer-copy{ color:var(--slate); font-size:12px; }
+  .foot-bottom a{ color:rgba(253,255,230,.85); text-decoration:none; }
+  .foot-bottom a:hover{ color:var(--sunshine-white); }
 
   /* 스크롤 인 애니메이션 */
   .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
@@ -577,6 +615,9 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
+    <span class="blob b1" aria-hidden="true"></span>
+    <span class="blob b2" aria-hidden="true"></span>
+    <span class="blob b3" aria-hidden="true"></span>
     <div class="container hero-grid">
       <div>
         <span class="eyebrow">바쁜 하루, 스윗밸런스</span>
@@ -699,51 +740,39 @@
     </div>
   </section>
 
-  <!-- ============ 하단 브랜드 소개 ============ -->
-  <section id="brand" class="brand">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">SweetBalance</span>
-        <h2 class="section-title">진정으로 건강한 한 끼, 오늘도 균형있게</h2>
-      </div>
-
-      <div class="mission-box reveal">
-        <p class="kr">진정으로 건강한 식사를 통해,<br>누구나 목표와 행복을 이룰 수 있는 삶을 만든다.</p>
-        <p class="en">"Through truly healthy meals, we help everyone build a life where they can reach their goals and find happiness."</p>
-      </div>
-
-      <p class="slogan reveal">Eat fresh, be your Best.</p>
-
-      <div class="personality-row reveal">
-        <div class="personality-card">
-          <p class="en">Warm</p>
-          <p class="kr">따뜻한</p>
-          <p class="desc">음식처럼, 브랜드도 사람을 품습니다. 건강을 훈계하지 않고 응원합니다.</p>
-        </div>
-        <div class="personality-card">
-          <p class="en">Fresh</p>
-          <p class="kr">신선한</p>
-          <p class="desc">재료처럼, 언어와 디자인도 가볍고 선명하게. 군더더기 없이.</p>
-        </div>
-        <div class="personality-card">
-          <p class="en">Honest</p>
-          <p class="kr">정직한</p>
-          <p class="desc">칼로리·영양소를 숨기지 않습니다. 숫자가 곧 신뢰입니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
-<footer class="site">
-  <div class="container footer-row">
-    <a href="#top" class="logo" style="font-size:16px;"><span class="logo-mark" aria-hidden="true" style="width:24px;height:24px;font-size:13px;">🥗</span>스윗밸런스</a>
-    <ul class="footer-links">
-      <li><a href="#product">대표 메뉴</a></li>
-      <li><a href="#roulette">채소 룰렛</a></li>
-      <li><a href="#brand">브랜드 소개</a></li>
-    </ul>
-    <p class="footer-copy">© <span id="year"></span> SweetBalance · SWB Corporation. All rights reserved.</p>
+<!-- ============ 하단 브랜드 소개 (풋터 겸용) ============ -->
+<footer class="brand-footer reveal" id="brand">
+  <div class="container">
+    <div class="wordmark"><span class="logo-mark" aria-hidden="true">🥗</span>스윗밸런스</div>
+
+    <p class="mission">진정으로 건강한 식사를 통해,<br>누구나 목표와 행복을 이룰 수 있는 삶을 만든다.</p>
+    <p class="mission-en">"Through truly healthy meals, we help everyone build a life where they can reach their goals and find happiness."</p>
+    <p class="slogan">Eat fresh, be your Best.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <p class="en">Warm</p>
+        <p class="kr">따뜻한</p>
+        <p class="desc">음식처럼, 브랜드도 사람을 품습니다. 건강을 훈계하지 않고 응원합니다.</p>
+      </div>
+      <div class="pillar">
+        <p class="en">Fresh</p>
+        <p class="kr">신선한</p>
+        <p class="desc">재료처럼, 언어와 디자인도 가볍고 선명하게. 군더더기 없이.</p>
+      </div>
+      <div class="pillar">
+        <p class="en">Honest</p>
+        <p class="kr">정직한</p>
+        <p class="desc">칼로리·영양소를 숨기지 않습니다. 숫자가 곧 신뢰입니다.</p>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> SweetBalance · SWB Corporation. All rights reserved.</span>
+      <a href="mailto:hello@sweetbalance.kr">hello@sweetbalance.kr</a>
+    </div>
   </div>
 </footer>
 
