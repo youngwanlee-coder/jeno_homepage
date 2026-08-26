@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이윤관</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.5em;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #5a5a5a;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>안녕하세요, 이윤관입니다</h1>
+    <p id="today"></p>
+  </div>
+  <script>
+    document.getElementById("today").textContent = new Date().toLocaleDateString(
+      "ko-KR",
+      { year: "numeric", month: "long", day: "numeric", weekday: "long" }
+    );
+  </script>
+</body>
+</html>
